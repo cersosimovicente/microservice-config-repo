@@ -1,1 +1,21 @@
+spring:
+  application:
+    name: microservice-gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: employee-service-route
+          uri: lb://MICROSERVICE-EMPLOYEE
+          predicates:
+            - Path=/employee/**
+        - id: department-service-route
+          uri: lb://MICROSERVICE-DEPARTMENT
+          predicates:
+            - Path=/department/**
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
 
